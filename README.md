@@ -2,6 +2,8 @@
 
 Primeira interface web da Biblioteca Digital UniFECAF, feita com HTML5 e CSS3 (sem JavaScript, frameworks ou templates).
 
+**Site publicado:** https://isathepigeon.github.io/biblioteca-unifecaf/
+
 ## Estrutura
 ```
 biblioteca-unifecaf/
@@ -15,7 +17,5 @@ biblioteca-unifecaf/
 ## Como abrir
 Abra o `index.html` no navegador.
 
-## Publicação (GitHub Pages)
-1. Suba esta pasta para um repositório público no GitHub.
-2. Settings → Pages → Branch `main`, pasta `/ (root)` → Save.
-3. O site fica em `https://<usuario>.github.io/<repositorio>/`.
+## Publicação
+O site é publicado pelo GitHub Pages a partir da branch `main` (pasta raiz).
