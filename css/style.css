@@ -1,0 +1,522 @@
+/* =========================================================
+   Biblioteca Digital UniFECAF - Folha de estilo
+   Abordagem mobile-first: os estilos base valem para o
+   celular e as media queries (min-width) ampliam o layout.
+   ========================================================= */
+
+/* ---------- 1. Variáveis (identidade visual) ---------- */
+:root {
+    /* Paleta baseada no azul-marinho e no verde da marca UniFECAF */
+    --azul-marinho: #0A1F4D;   /* cor institucional: cabeçalho, seções */
+    --azul-noite:   #06122E;   /* fundos de maior contraste (unidades, rodapé) */
+    --azul-medio:   #1C3A7A;   /* variações e detalhes */
+    --verde:        #2FCF7F;   /* destaque: botões, sublinhados, foco */
+    --verde-escuro: #1FA463;   /* hover dos botões */
+    --cinza-claro:  #F4F6FA;   /* fundo de cards e seção de contatos */
+    --texto-escuro: #14203D;   /* texto sobre fundos claros */
+    --texto-claro:  #FFFFFF;   /* texto sobre fundos escuros */
+    --texto-suave:  #C9D3EA;   /* parágrafos sobre fundo escuro */
+
+    --fonte-titulo: "Montserrat", Arial, sans-serif;
+    --fonte-texto:  "Open Sans", Arial, sans-serif;
+
+    --raio: 12px;
+    --sombra: 0 8px 24px rgba(6, 18, 46, 0.25);
+    --espaco-secao: 64px;
+}
+
+/* ---------- 2. Reset e base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* width passa a incluir padding e borda */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--texto-escuro);
+    background-color: var(--cinza-claro);
+}
+
+img {
+    display: block;
+    max-width: 100%; /* imagem nunca ultrapassa o container */
+    height: auto;    /* mantém a proporção, sem distorcer */
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+}
+
+/* Foco visível para quem navega pelo teclado */
+a:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 3px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Link "pular para o conteúdo": escondido até receber foco */
+.pular-conteudo {
+    position: absolute;
+    top: -60px;
+    left: 16px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--verde);
+    color: var(--azul-noite);
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.2s;
+}
+
+.pular-conteudo:focus {
+    top: 0;
+}
+
+/* ---------- 3. Componentes reutilizáveis ---------- */
+.titulo-secao {
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+}
+
+/* Traço verde abaixo dos títulos, inspirado no destaque da marca */
+.titulo-secao::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 12px;
+    background: var(--verde);
+    border-radius: 2px;
+}
+
+.secao-escura {
+    background-color: var(--azul-marinho);
+    color: var(--texto-claro);
+    padding: var(--espaco-secao) 0;
+}
+
+.secao-escura p {
+    color: var(--texto-suave);
+}
+
+.botao {
+    display: inline-block;
+    padding: 12px 28px;
+    font-family: var(--fonte-titulo);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--azul-noite); /* texto escuro no verde: contraste adequado */
+    background-color: var(--verde);
+    border-radius: 999px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.botao:hover {
+    background-color: var(--verde-escuro);
+    transform: translateY(-2px);
+}
+
+/* ---------- 4. Cabeçalho e menu ---------- */
+.cabecalho {
+    position: sticky; /* menu fica visível durante a rolagem */
+    top: 0;
+    z-index: 50;
+    background-color: var(--azul-noite);
+    border-bottom: 3px solid var(--verde);
+}
+
+.cabecalho__conteudo {
+    display: flex;
+    flex-direction: column; /* no celular: logo em cima, menu embaixo */
+    align-items: center;
+    gap: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--texto-claro);
+    line-height: 1.1;
+}
+
+.logo__marca {
+    font-family: var(--fonte-titulo);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.logo__marca strong {
+    font-weight: 800;
+    color: var(--verde);
+}
+
+.logo__sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+
+.menu__link {
+    display: block;
+    padding: 8px 12px;
+    font-family: var(--fonte-titulo);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--texto-claro);
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menu__link:hover,
+.menu__link--ativo {
+    background-color: var(--verde);
+    color: var(--azul-noite);
+}
+
+/* ---------- 5. Banners ---------- */
+.banner {
+    position: relative; /* referência para o texto sobreposto */
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--texto-claro);
+}
+
+.banner__imagem {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* preenche o espaço sem distorcer */
+}
+
+/* Camada escura sobre a imagem para garantir a leitura do texto */
+.banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(6, 18, 46, 0.9) 0%, rgba(6, 18, 46, 0.55) 100%);
+}
+
+.banner__texto {
+    position: relative;
+    z-index: 1; /* texto fica acima da camada escura */
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.banner h1 {
+    font-size: 1.9rem;
+    max-width: 640px;
+    margin-bottom: 16px;
+}
+
+.banner h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.banner p {
+    max-width: 520px;
+    margin-bottom: 24px;
+    color: var(--texto-suave);
+}
+
+.banner--secundario {
+    min-height: 260px;
+}
+
+/* ---------- 6. Sobre ---------- */
+.sobre__grade {
+    display: grid;
+    grid-template-columns: 1fr; /* celular: uma coluna */
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sobre__imagem {
+    width: 100%;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* celular: 2 por linha */
+    gap: 16px;
+}
+
+.galeria img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* quadrados, como no protótipo */
+    object-fit: cover;
+    border-radius: var(--raio);
+    border: 3px solid var(--azul-medio);
+    transition: border-color 0.2s;
+}
+
+.galeria img:hover {
+    border-color: var(--verde);
+}
+
+/* ---------- 7. Livros (cards) ---------- */
+.livros__grade {
+    display: grid;
+    grid-template-columns: 1fr; /* celular: um card por linha */
+    gap: 28px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 20px;
+    background-color: var(--cinza-claro);
+    color: var(--texto-escuro);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card__titulo {
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+}
+
+.card__imagem {
+    width: 140px;
+    aspect-ratio: 5 / 7; /* proporção fixa de capa de livro */
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 4px 6px 14px rgba(6, 18, 46, 0.35);
+    margin-bottom: 16px;
+}
+
+/* Sobrescreve a cor de .secao-escura p dentro do card claro */
+.secao-escura .card__texto {
+    color: #3A4766;
+    font-size: 0.9rem;
+    flex-grow: 1; /* empurra o botão para baixo, alinhando os cards */
+    margin-bottom: 20px;
+}
+
+.botao--card {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+}
+
+/* ---------- 8. Unidades ---------- */
+.unidades {
+    background-color: var(--azul-noite);
+    color: var(--texto-claro);
+    padding: var(--espaco-secao) 0;
+}
+
+.unidade {
+    display: grid;
+    grid-template-columns: 1fr; /* celular: imagem em cima, texto embaixo */
+    gap: 20px;
+    margin-bottom: 48px;
+}
+
+.unidade:last-child {
+    margin-bottom: 0;
+}
+
+.unidade__imagem {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--raio);
+}
+
+.unidade__texto h3 {
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    color: var(--verde);
+}
+
+.unidade__texto p {
+    color: var(--texto-suave);
+}
+
+/* ---------- 9. Contatos ---------- */
+.contatos {
+    background-color: #DCE3F0;
+    padding: var(--espaco-secao) 0;
+}
+
+.contatos__grade {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.contatos p {
+    margin-bottom: 12px;
+}
+
+.contatos address {
+    font-style: normal; /* <address> vem em itálico por padrão */
+    margin-top: 20px;
+}
+
+.contatos a {
+    color: var(--azul-medio);
+    font-weight: 600;
+}
+
+.contatos__imagem {
+    width: 100%;
+    max-width: 360px;
+    justify-self: center;
+    border-radius: var(--raio);
+}
+
+/* ---------- 10. Rodapé ---------- */
+.rodape {
+    background-color: var(--azul-noite);
+    color: var(--texto-suave);
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 24px 0;
+    border-top: 3px solid var(--verde);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/* Tablets (a partir de 600px) */
+@media (min-width: 600px) {
+    .livros__grade {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .banner h1 {
+        font-size: 2.4rem;
+    }
+}
+
+/* Desktop (a partir de 900px) */
+@media (min-width: 900px) {
+    :root {
+        --espaco-secao: 88px;
+    }
+
+    /* Logo à esquerda e menu à direita, como no protótipo */
+    .cabecalho__conteudo {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo {
+        align-items: flex-start;
+    }
+
+    .banner {
+        min-height: 480px;
+    }
+
+    .banner h1 {
+        font-size: 3rem;
+    }
+
+    .banner--secundario {
+        min-height: 320px;
+    }
+
+    .titulo-secao {
+        font-size: 1.6rem;
+    }
+
+    /* Texto | imagem | texto */
+    .sobre__grade {
+        grid-template-columns: 1fr 1.2fr 1fr;
+        gap: 40px;
+    }
+
+    .livros__grade {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px;
+    }
+
+    /* Imagem à esquerda e texto à direita */
+    .unidade {
+        grid-template-columns: 1fr 1.3fr;
+        gap: 48px;
+        align-items: center;
+    }
+
+    .contatos__grade {
+        grid-template-columns: 2fr 1fr;
+        gap: 56px;
+    }
+}
+
+/* Respeita quem prefere menos animação no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
